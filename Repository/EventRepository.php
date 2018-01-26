@@ -88,7 +88,7 @@ class EventRepository implements EventRepositoryInterface
     /**
      * @return bool
      */
-    public function isTableExist()
+    private function isTableExist()
     {
         $result = $this->connection->query("SELECT 
                   table_name 
@@ -102,7 +102,7 @@ class EventRepository implements EventRepositoryInterface
         return $result->num_rows > 0;
     }
 
-    public function createTable()
+    private function createTable()
     {
         $this->connection->query("
             CREATE TABLE IF NOT EXISTS " . self::EVENTS_TABLE_NAME . " (
@@ -121,7 +121,7 @@ class EventRepository implements EventRepositoryInterface
     /**
      * @return bool
      */
-    public function checkError()
+    private function checkError()
     {
         if ($this->connection->errno) {
             $this->logger->log($this->connection->error, Logger::ALERT);
