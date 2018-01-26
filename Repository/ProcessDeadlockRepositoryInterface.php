@@ -20,13 +20,4 @@ interface ProcessDeadlockRepositoryInterface
      * @param string $processName
      */
     public function release($processName);
-
-    /**
-     * @return bool
-     */
-    public function isTableExists();
-
-    public function createTable();
-
-    public function checkError();
 }

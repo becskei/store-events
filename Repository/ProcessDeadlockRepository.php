@@ -114,7 +114,7 @@ class ProcessDeadlockRepository implements ProcessDeadlockRepositoryInterface
     /**
      * @return bool
      */
-    public function isTableExists()
+    private function isTableExists()
     {
         $result = $this->connection->query("SELECT 
                   table_name 
@@ -128,7 +128,7 @@ class ProcessDeadlockRepository implements ProcessDeadlockRepositoryInterface
         return $result->num_rows > 0;
     }
 
-    public function createTable()
+    private function createTable()
     {
         $this->connection->query("
             CREATE TABLE IF NOT EXISTS " . self::TABLE_NAME . " (
@@ -144,7 +144,7 @@ class ProcessDeadlockRepository implements ProcessDeadlockRepositoryInterface
     /**
      * @return bool
      */
-    public function checkError()
+    private function checkError()
     {
         if ($this->connection->errno) {
             $this->logger->log($this->connection->error, Logger::ALERT);
