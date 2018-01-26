@@ -49,8 +49,8 @@ class EventService
 
     public function saveFromFile()
     {
-        if ($this->fileHandler->hasFiles(ROOT . EVENTS_UPLOAD_FOLDER, self::CSV)) {
-            $files = $this->fileHandler->getFiles(ROOT . EVENTS_UPLOAD_FOLDER);
+        if ($this->fileHandler->hasFiles(EVENTS_UPLOAD_FOLDER, self::CSV)) {
+            $files = $this->fileHandler->getFiles(EVENTS_UPLOAD_FOLDER);
 
             if (!empty($files)) {
 
@@ -64,9 +64,9 @@ class EventService
                         foreach ($events as $event) {
                             $this->eventRepository->save($event);
                         }
-                        $this->fileHandler->move($file, ROOT . EVENTS_PROCESSED_FOLDER . '/' . basename($file));
+                        $this->fileHandler->move($file, EVENTS_PROCESSED_FOLDER . '/' . basename($file));
                     } else {
-                        $this->fileHandler->move($file, ROOT . EVENTS_FAILED_FOLDER . '/' . basename($file));
+                        $this->fileHandler->move($file, EVENTS_FAILED_FOLDER . '/' . basename($file));
                     }
                 }
             }
